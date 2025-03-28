@@ -1,5 +1,5 @@
 from warship import WarShip
-
+from deck import Deck
 
 def main():
 
@@ -12,5 +12,13 @@ def main():
     warship.battle(2,warship2)
     warship.battle(1,warship2)
     warship.battle(0,warship2)
+
+    deck1 = Deck()
+
+    warships = [warship,warship2]
+
+    deck1.set_deck(warships)
+
+    print(deck1)
 
 main()
