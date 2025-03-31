@@ -6,9 +6,11 @@ class Deck():
 
     def __init__(self):
         self.warships = []
+        self.life = 0
 
     def set_deck(self, warships):
         self.warships = warships
+        self.life = len(warships)
 
     def __repr__(self):
         warships_names = "Deck contains\n"
@@ -37,6 +39,7 @@ class Deck():
 def battle(deck, other, stat):
         if len(deck.warships) == 0 or len(other.warships) == 0:
             print("No more cards in deck")
+            return
         else:
             friendly = deck.warships[0]
             enemy = other.warships[0]
@@ -45,12 +48,14 @@ def battle(deck, other, stat):
             if friendly.stats[stat] > enemy.stats[stat]:
                 colors.print_green(f"{friendly.class_name} Wins\n")
                 other.discard()
+                other.life -= 1
             elif friendly.stats[stat] == enemy.stats[stat]:
                 colors.print_blue(f"Draw between {friendly.class_name} and {enemy.class_name}\n")
                 deck.shuffle()
             else:
                 colors.print_red(f"Defeat {friendly.class_name} Lost\n")
                 deck.discard()
+                deck.life -= 1
         
 
     
